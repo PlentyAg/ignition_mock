@@ -35,6 +35,12 @@ setup(name='system',
 
 # NOTE: this method mocking org is not necessarily ideal because it overwrites existing things in org.
 # We may want to consider just installing slf4j directly instead of mocking here
+# (but that would require some work figuring out jython package management)
+setup(name='org.slf4j',
+      version='0.1',
+      description='Org mock.',
+      packages=['org/slf4j'],
+      **common_args)
 setup(name='org',
       version='0.1',
       description='Org mock.',
