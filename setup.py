@@ -32,3 +32,12 @@ setup(name='system',
       description='The Igntition system mock library.',
       packages=['system'],
       **common_args)
+
+# NOTE: this method mocking org is not necessarily ideal because it overwrites existing things in org.
+# We may want to consider just installing slf4j directly instead of mocking here
+setup(name='org',
+      version='0.1',
+      description='Org mock.',
+      packages=['org'],
+      **common_args)
+
