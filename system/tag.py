@@ -215,3 +215,7 @@ def writeAll(tagPaths, values):
     """
     print(tagPaths, values)
     return [1] * len(tagPaths)
+
+
+def exists():
+    return True
