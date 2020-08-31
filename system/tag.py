@@ -292,3 +292,8 @@ def writeSynchronous(tagPath, value):
 
 def writeValue(tagPath, value):
     pass
+
+def exists(udtPath):
+    if len(udtPath) > 0:
+        return True
+    return False
