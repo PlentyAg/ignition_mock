@@ -3,13 +3,20 @@
 
 from setuptools import setup
 
-fin = open('README.md', 'r')
-readme = fin.read()
-fin.close()
+fin = None
+try:
+    fin = open('README.md', 'r')
+    readme = fin.read()
+finally:
+    if fin:
+        fin.close()
 
-fin = open('requirements.txt', 'r')
-requirements = [e.strip() for e in fin.readlines()]
-fin.close()
+try:
+    fin = open('requirements.txt', 'r')
+    requirements = [e.strip() for e in fin.readlines()]
+finally:
+    if fin:
+        fin.close()
 
 common_args = {
     'long_description': readme,
