@@ -6,7 +6,7 @@ The following functions give you access to interact with Ignition
 Tags."""
 
 __all__ = [
-    'browseTags', 'browseTagsSimple', 'browseConfiguration', 'read', 'readAll', 'write', 'writeAll', 'writeSynchronous', 'writeValue',
+    'browseTags', 'browseTagsSimple', 'browseConfiguration', 'read', 'readAll', 'write', 'writeAll', 'writeSynchronous',
     ## Classes below are added for use in unit tests. Note that ignition does not expose these directly
     'QualifiedValue', 'TagConfiguration', 'TagProperty', 'TagDataType'
 ]
@@ -290,7 +290,7 @@ def writeAll(tagPaths, values):
 def writeSynchronous(tagPath, value):
     pass
 
-def writeValue(tagPath, value):
+def writeAllSynchronous(tagPaths, values):
     pass
 
 def exists(udtPath):
