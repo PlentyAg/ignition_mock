@@ -5,7 +5,7 @@
 """Net Functions
 The following functions give you access to interact with http services."""
 
-__all__ = ['httpGet', 'sendEmail']
+__all__ = ['httpGet', 'httpPost', 'sendEmail']
 
 
 def httpGet(url,
@@ -55,6 +55,23 @@ def httpGet(url,
     """
     print(url, connectTimeout, readTimeout, username, password, headerValues,
           bypassCertValidation, useCaches, throwOnError)
+    return ''
+
+
+def httpPost(url, *args):
+    """Retrieves the document at the given URL using the HTTP POST
+    protocol. If a parameter dictionary argument is specified, the
+    entries in the dictionary will encoded in
+    "application/x-www-form-urlencoded" format, and then posted. You
+    can post arbitrary data as well, but you'll need to specify the
+    MIME type. The document is then returned as a string.
+    Args:
+        url (str): The URL to post to.
+        *args: Variable length argument list.
+    Returns:
+        str: The content returned for the POST operation.
+    """
+    print(url, args)
     return ''
 
 
