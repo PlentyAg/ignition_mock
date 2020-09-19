@@ -58,20 +58,46 @@ def httpGet(url,
     return ''
 
 
-def httpPost(url, *args):
-    """Retrieves the document at the given URL using the HTTP POST
-    protocol. If a parameter dictionary argument is specified, the
-    entries in the dictionary will encoded in
-    "application/x-www-form-urlencoded" format, and then posted. You
-    can post arbitrary data as well, but you'll need to specify the
-    MIME type. The document is then returned as a string.
+def httpPost(url, 
+            contentType, 
+            postData, 
+            connectTimeout=10000, 
+            readTimeout=60000, 
+            username=None, 
+            password=None, 
+            headerValues=None, 
+            bypassCertValidation=False, 
+            throwOnError=True):
+    """Retrieves the document at the given URL using the HTTP POST protocol. 
+    The document is then returned as a string.
+
     Args:
         url (str): The URL to post to.
-        *args: Variable length argument list.
-    Returns:
-        str: The content returned for the POST operation.
+        contentType (str): The MIME type to use in the HTTP "Content-type" header.
+        postData: The raw data to post via HTTP.
+        connectTimeout (int): The timeout for connecting to the URL.
+            In milliseconds. Default is10,000. Optional.
+        readTimeout (int): The read timeout for the get operation. In
+            milliseconds. Default is 60,000. Optional.
+        username (str): If specified, the call will attempt to
+            authenticate with basic HTTP authentication. Optional.
+        password (str): The password used for basic HTTP
+            authentication, if the username parameter is also present.
+            Optional.
+        headerValues (dict): A dictionary of name/value pairs that
+            will be set in the HTTP header. Optional.
+        bypassCertValidation (bool): If the target address is an HTTPS
+            address, and this parameter is True, the system will
+            bypass all SSL certificate  validation. This is not
+            recommended, though is sometimes necessary for self-signed
+            certificates. Optional.
+        throwOnError (bool): Set to False if you wish to get the error
+            body rather than a Python exception if the GET request
+            returns an error code (non-200 responsive). Default is
+            True. Optional.
     """
-    print(url, args)
+    print(url, contentType, postData, connectTimeout, readTimeout, 
+        username, password, headerValues, bypassCertValidation, throwOnError)
     return ''
 
 
