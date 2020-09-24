@@ -7,7 +7,7 @@ Client data, as well as interact with other various systems."""
 
 __all__ = [
     'beep', 'getGatewayAddress', 'getProjectName', 'getProperty', 'jsonDecode',
-    'jsonEncode', 'setLocale', 'translate'
+    'jsonEncode', 'sendRequest', 'setLocale', 'translate'
 ]
 
 
@@ -177,7 +177,7 @@ def sendRequest(project, messageHandler, payload=None, hostName=None,
     print(project, messageHandler, payload, hostName, remoteServer, timeoutSec)
     return None
 
-    
+
 def setLocale(locale):
     """Sets the user's current Locale. Any valid Java locale code
     (case-insensitive) can be used as a parameter, including ones that
