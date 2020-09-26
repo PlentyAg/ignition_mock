@@ -7,7 +7,7 @@ Client data, as well as interact with other various systems."""
 
 __all__ = [
     'beep', 'getGatewayAddress', 'getProjectName', 'getProperty', 'jsonDecode',
-    'jsonEncode', 'setLocale', 'translate'
+    'jsonEncode', 'sendRequest', 'setLocale', 'translate'
 ]
 
 
@@ -141,6 +141,41 @@ def jsonEncode(pyObj, indentFactor=4):
     except ImportError:
         import simplejson as json
     return json.dumps(pyObj, indent=indentFactor)
+
+
+def sendRequest(project, messageHandler, payload=None, hostName=None,
+                remoteServer=None, timeoutSec=None):
+    """This function sends a message to the Gateway, working in a
+    similar manner to the sendMessage function, except sendRequest
+    expects a response to the message. To handle received messages,
+    you must set up Gateway Event Script message handlers within a
+    project. These message handlers run Jython code when a message is
+    received. You can then place a return at the end of the code to
+    return something to where the sendRequest was originally called
+    from. You can add message handlers under the "Message" section of
+    the Gateway Event Script configuration dialog.
+    Args:
+        project (str): The name of the project containing the message
+            handler.
+        messageHandler (str): The name of the message handler that
+            will fire upon receiving a message.
+        payload (dict): A PyDictionary which will get passed to the
+            message handler. Use "payload" in the message handler to
+            access dictionary variables. Optional.
+        hostName (str): Limits the message delivery to the client
+            that has the specified network host name. Optional.
+        remoteServer (str): A string representing a target Gateway
+            Server name. The message will be delivered to the remote
+            Gateway over the Gateway Network. Upon delivery, the
+            message is distributed to the local Gateway and clients as
+            per the other parameters. Optional.
+        timeoutSec (str): The number of seconds before the sendRequest
+            call times out. Optional.
+    Returns:
+        object: The return from the message handler.
+    """
+    print(project, messageHandler, payload, hostName, remoteServer, timeoutSec)
+    return None
 
 
 def setLocale(locale):
