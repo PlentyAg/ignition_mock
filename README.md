@@ -1,3 +1,5 @@
+# N.B.: THIS REPO IS PUBLIC BECAUSE IT IS A FORK
+
 # Description
 This repository is meant to mock some of Ignition's builtin libraries. In 
 particular, parts of
