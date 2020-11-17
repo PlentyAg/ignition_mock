@@ -37,8 +37,7 @@ def toDataSet(*args):
     Returns:
         Dataset: The newly created dataset.
     """
-    for arg in args:
-        print arg
+    return BasicDataset(*args)
 
 
 def toPyDataSet(dataset):
@@ -53,4 +52,51 @@ def toPyDataSet(dataset):
     Returns:
         PyDataSet: The newly created PyDataSet.
     """
-    print dataset
+    return PyDataset(dataset)
+
+
+class BasicDataset(object):
+    """
+        Representation of result of system.dataset.toDataSet
+    """
+
+    def __init__(self, headers, data):
+        self.headers = headers
+        self.data = data
+
+    def getColumnCount(self):
+        return len(self.headers)
+
+    def getColumnName(self, idx):
+        return self.headers[idx]
+
+    def getRowCount(self):
+        return len(self.data)
+
+
+class PyDataset(BasicDataset):
+    """
+        Representation of result of system.dataset.toPydataset
+    """
+
+    def __init__(self, dataset):
+        self.data = dataset.data
+        self.headers = dataset.headers
+        super(BasicDataset, self).__init__(dataset.headers, dataset.data)
+
+    def __iter__(self):
+        return _PyDatasetIterator(self)
+
+
+class _PyDatasetIterator():
+
+    def __init__(self, pydataset):
+        self.__pydataset = pydataset
+        self.__index = 0
+
+    def next(self):
+        if self.__index < self.__pydataset.getRowCount():
+            result = self.__pydataset.data[self.__index]
+            self.__index = self.__index + 1
+            return result
+        raise StopIteration
