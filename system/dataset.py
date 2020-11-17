@@ -96,7 +96,10 @@ class _PyDatasetIterator():
 
     def next(self):
         if self.__index < self.__pydataset.getRowCount():
+            final_result = {}
             result = self.__pydataset.data[self.__index]
+            for idx, header in enumerate(self.__pydataset.headers):
+                final_result[header] = result[idx]
             self.__index = self.__index + 1
-            return result
+            return final_result
         raise StopIteration
